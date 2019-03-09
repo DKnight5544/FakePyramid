@@ -1,0 +1,153 @@
+﻿
+@model UserView
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        FakePyramid.com
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,300,400">
+    <link rel="stylesheet" href="~/css/Home.css">
+    <script>let userID = "@Model.UserID";</script>
+    <script type="text/javascript" src="~/js/Home.js"></script>
+</head>
+
+<body onload="body_onload();">
+    <div class="main-div">
+
+        <div class="text-block color-one">
+            <table class="stats-table">
+                <tr>
+                    <td colspan="5" class="stats-title">@Model.UserID.ToUpper()</td>
+                </tr>
+                <tr>
+                    <td class="stats-col1 stats-col-headings">Level</td>
+                    <td class="stats-col2 stats-col-headings"><button class="test-button" onclick="incrementbase(-1)">-</button></td>
+                    <td class="stats-col2 stats-col-headings"><div id="L0"></div></td>
+                    <td class="stats-col2 stats-col-headings"><button class="test-button" onclick="incrementbase(+1)">+</button></td>
+                    <td class="stats-col3 stats-col-headings">You</td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">1</td>
+                    <td colspan="3" class="stats-col2"><div id="L1"></div></td>
+                    <td class="stats-col3">@Model.L1</td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">2</td>
+                    <td colspan="3" class="stats-col2"><div id="L2"></div></td>
+                    <td class="stats-col3">@Model.L2</td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">3</td>
+                    <td colspan="3" class="stats-col2"><div id="L3"></div></td>
+                    <td class="stats-col3">@Model.L3</td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">4</td>
+                    <td colspan="3" class="stats-col2"><div id="L4"></div></td>
+                    <td class="stats-col3">@Model.L4</td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">5</td>
+                    <td colspan="3" class="stats-col2"><div id="L5"></div></td>
+                    <td class="stats-col3">@Model.L5</td>
+                </tr>
+            </table>
+        </div>
+
+
+        <div class="text-block color-two">
+            <h3>Not @Model.UserID.ToUpper() ?</h3>
+            <p>
+                Please use your <a href="https://www.paypal.me/" target="_blank" class="white-link">PayPal.Me</a>
+                link to create or switch to your own fakepyramid.com page . . .
+            </p>
+            <p class="paypal-lable">
+                paypal.me/
+                <input type="text" class="paypal-handle-input" />&nbsp;&nbsp;&nbsp;
+                <button onclick="AddNewUser(this);" class="test-button">GO</button>
+            </p>
+
+        </div>
+
+        <div class="text-block color-three">
+            <h3>What is FakePyramid.com ?</h3>
+            <p>
+                FakePyramid.com is a <b>FREE, LEGAL,</b> simulated pyramid scheme that
+                is optimized for your cell phone.
+            </p>
+            <p>
+                It is designed with fans of MLM, pyramid schemes, and
+                chain letters in mind. Come on, <b>you know who you are</b>, let your inner Ponzi
+                come out and play!
+            </p>
+        </div>
+
+        <div class="text-block color-one">
+            <h3>Build An Empire!</h3>
+            <p>
+                Use that big red calculator at the top of the page to both
+                play with possibilities and track the growth of your organization levels!
+            </p>
+            <p>
+                Folks you share with will become your first (1st) level. Folks they share
+                with become your second (2nd) level, and so on.  We track your organization through
+                a <b>full five levels</b>.
+            </p>
+        </div>
+
+        <div class="text-block color-two">
+            <h3>First Things First</h3>
+            <p>
+                If you are @Model.UserID, then let's <b>bookmark this page</b>.  On an Android phone you
+                can even add it to your desktop for quicker access.
+            </p>
+        </div>
+
+        <div class="text-block color-three">
+            <h3>Next Things Next</h3>
+            <p>
+                Test your PayPal.Me link.  It should open to YOUR
+                PayPal.Me page. &nbsp;&nbsp;&nbsp;
+                <button class="test-button"
+                        onclick="window.location.href='http://paypal.me/@Model.UserID'">
+                    TEST
+                </button>
+            </p>
+        </div>
+
+
+        <div class="text-block color-one">
+            <h3>Last Things Last</h3>
+            <p>
+                Use the advaced sharing capabilities of your cell phone to build your
+                empire by sharing this page with others. <b>Dare to Share</b>. . .
+            </p>
+        </div>
+
+        <div class="text-block color-two">
+            <h3>Why PayPal.Me?</h3>
+            <p>
+                Because it's possible, just possible, that somebody, <b>maybe even everybody</b>, on your fifth (5th) level
+                will go crazy and send you a small gift.
+            </p>
+        </div>
+
+        <div class="text-block color-three">
+            <h3>Going Crazy ?</h3>
+            <p>
+                <b>If you are feeling crazy,</b> then why not consider sending the person at the top of YOUR pyramid
+                a small gift?  It might make you feel good. It might even be the answer to a prayer. . . &nbsp;&nbsp;&nbsp;
+                <button class="test-button"
+                        onclick="window.location.href='http://paypal.me/@Model.PayeeID'">
+                    GIVE
+                </button>
+            </p>
+        </div>
+
+    </div>
+</body>
+</html>

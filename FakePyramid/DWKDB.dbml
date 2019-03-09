@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="DWKDB" Class="DWKDBDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ie0p1a01o5.database.windows.net;Initial Catalog=DWKDB;Persist Security Info=True;User ID=FP_User" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DWKDBConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="FP.UserView" Member="UserViews">
+    <Type Name="UserView" Id="ID1">
+      <Column Name="UserID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="ParentID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="PayeeID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="JoinDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="L1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="L2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="L3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="L4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="L5" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="FP.User_Insert" Method="User_Insert">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="NewUserID" Parameter="newUserID" Type="System.String" DbType="VarChar(30)" />
+    <Return Type="System.Int32" />
+  </Function>
+  <Function Name="FP.User_SelectByUserID" Method="User_SelectByUserID">
+    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(30)" />
+    <ElementType IdRef="ID1" />
+  </Function>
+</Database>
