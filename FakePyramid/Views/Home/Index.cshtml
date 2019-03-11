@@ -7,18 +7,18 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>
-        FakePyramid.com
+        @Model.UserID.ToUpper()'s Home Page
     </title>
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:200,300,400">
-    <link rel="stylesheet" href="~/css/Home.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300">
+    <link rel="stylesheet" href="~/css/site.css?@DateTime.Now.Ticks">
     <script>let userID = "@Model.UserID";</script>
-    <script type="text/javascript" src="~/js/Home.js"></script>
+    <script type="text/javascript" src="~/js/Home.js?@DateTime.Now.Ticks"></script>
 </head>
 
 <body onload="body_onload();">
     <div class="main-div">
 
-        <div class="text-block color-one">
+        <div class="box-shadow-container">
             <table class="stats-table">
                 <tr>
                     <td colspan="5" class="stats-title">@Model.UserID.ToUpper()</td>
@@ -58,95 +58,133 @@
             </table>
         </div>
 
+        <a href="/share/@Model.UserID">
+            <p class="with-border centered">
+                MY SHARE LINK
+            </p>
+        </a>
 
-        <div class="text-block color-two">
-            <h3>Not @Model.UserID.ToUpper() ?</h3>
-            <p>
-                Please use your <a href="https://www.paypal.me/" target="_blank" class="white-link">PayPal.Me</a>
-                link to create or switch to your own fakepyramid.com page . . .
+        <a href="http://paypal.me/@Model.PayeeID">
+            <p class="with-border centered">
+                MY PONZI PAL
             </p>
-            <p class="paypal-lable">
-                paypal.me/
-                <input type="text" class="paypal-handle-input" />&nbsp;&nbsp;&nbsp;
-                <button onclick="AddNewUser(this);" class="test-button">GO</button>
-            </p>
+        </a>
 
-        </div>
+        <p class="para-heading">Bookmark This Page: Now</p>
+        <p>
+            It is important that you can always get back here. On an Android phone it
+            is even possible for you to <b>add this page to your home screen</b> for easier
+            access.
+        </p>
 
-        <div class="text-block color-three">
-            <h3>What is FakePyramid.com ?</h3>
-            <p>
-                FakePyramid.com is a <b>FREE, LEGAL,</b> simulated pyramid scheme that
-                is optimized for your cell phone.
-            </p>
-            <p>
-                It is designed with fans of MLM, pyramid schemes, and
-                chain letters in mind. Come on, <b>you know who you are</b>, let your inner Ponzi
-                come out and play!
-            </p>
-        </div>
+        <p class="para-heading">Now Test Your Link</p>
+        <p>
+            This link should open to YOUR PayPal.Me page. If it doesn't
+            then you may need try again. . .
+        </p>
 
-        <div class="text-block color-one">
-            <h3>Build An Empire!</h3>
-            <p>
-                Use that big red calculator at the top of the page to both
-                play with possibilities and track the growth of your organization levels!
+        <a href="http://paypal.me/@Model.UserID">
+            <p class="with-border centered">
+                @Model.UserID.ToUpper()
             </p>
-            <p>
-                Folks you share with will become your first (1st) level. Folks they share
-                with become your second (2nd) level, and so on.  We track your organization through
-                a <b>full five levels</b>.
-            </p>
-        </div>
+        </a>
 
-        <div class="text-block color-two">
-            <h3>First Things First</h3>
-            <p>
-                If you are @Model.UserID, then let's <b>bookmark this page</b>.  On an Android phone you
-                can even add it to your desktop for quicker access.
-            </p>
-        </div>
-
-        <div class="text-block color-three">
-            <h3>Next Things Next</h3>
-            <p>
-                Test your PayPal.Me link.  It should open to YOUR
-                PayPal.Me page. &nbsp;&nbsp;&nbsp;
-                <button class="test-button"
-                        onclick="window.location.href='http://paypal.me/@Model.UserID'">
-                    TEST
-                </button>
-            </p>
-        </div>
+        <p class="para-heading">Start Building Your Empire</p>
+        <p>
+            Use your "My Share Link" button above to switch to your share page. Once
+            there, use the advanced sharing features of your cell
+            phone to invite others to join your organization.
+        </p>
 
 
-        <div class="text-block color-one">
-            <h3>Last Things Last</h3>
-            <p>
-                Use the advaced sharing capabilities of your cell phone to build your
-                empire by sharing this page with others. <b>Dare to Share</b>. . .
-            </p>
-        </div>
+        <p class="para-heading">Watch Your Pyramid Grow</p>
+        <p>
+            Use the chart at the top of the page to watch
+            your pyramid grow.  Level By Level. Day by Day.
+        </p>
+        <p>
+            <b>Remember:</b> This website will ask each person on
+            your <b>fifth (5)</b> level to consider giving you a
+            <b>$10</b> gift.  Just for the fun of it.
+        </p>
 
-        <div class="text-block color-two">
-            <h3>Why PayPal.Me?</h3>
-            <p>
-                Because it's possible, just possible, that somebody, <b>maybe even everybody</b>, on your fifth (5th) level
-                will go crazy and send you a small gift.
-            </p>
-        </div>
 
-        <div class="text-block color-three">
-            <h3>Going Crazy ?</h3>
-            <p>
-                <b>If you are feeling crazy,</b> then why not consider sending the person at the top of YOUR pyramid
-                a small gift?  It might make you feel good. It might even be the answer to a prayer. . . &nbsp;&nbsp;&nbsp;
-                <button class="test-button"
-                        onclick="window.location.href='http://paypal.me/@Model.PayeeID'">
-                    GIVE
-                </button>
+        <p class="para-heading">Are <i>You</i> Having Fun?</p>
+        <p>
+            Then consider giving a <b>$10</b> gift to your <b>Ponzi Pal</b>:
+            the person five (5) levels above you in the organization. Just use
+            the many "My Ponzi Pal" links on this page.
+        </p>
+        <p>
+            <b>Note:</b> if you are close enough to the top of the pyramid,
+            then your Ponzi Pal will be <b>wigiwiz</b> himself.
+        </p>
+
+        <a href="http://paypal.me/@Model.PayeeID">
+            <p class="with-border centered">
+                MY PONZI PAL
             </p>
-        </div>
+        </a>
+
+        <p class="para-heading">Disclaimer</p>
+        <p>
+            Giving is not required to enjoy watching your organization grow,
+            or to recieve gifts. We cannot guarantee that anyone will ever send you a
+            gift. We can only ask.
+        </p>
+
+        <p class="para-heading">Some Possible Benefits</p>
+        <p>
+            Here is a short list of as yet unconfirmed benefits of
+            giving:
+        </p>
+
+        <ul>
+            <li>Spontanious Hair Growth</li>
+            <li>Weight Loss</li>
+            <li>X-Ray Vision</li>
+            <li>Increased Sex Appeal</li>
+        </ul>
+
+        <a href="http://paypal.me/@Model.PayeeID">
+            <p class="with-border centered">
+                MY PONZI PAL
+            </p>
+        </a>
+
+        <ul>
+            <li>Improved Memory</li>
+            <li>Longer, Harder Erections</li>
+            <li>Kids Become Compliant</li>
+            <li>Wives Become Submissive</li>
+        </ul>
+
+        <a href="http://paypal.me/@Model.PayeeID">
+            <p class="with-border centered">
+                MY PONZI PAL
+            </p>
+        </a>
+
+        <ul>
+            <li>Pets Quit Begging</li>
+            <li>Underwear Stains Disappear</li>
+            <li>Cell Phone Batteries Last Longer</li>
+            <li>The List keeps Growing</li>
+        </ul>
+
+        <a href="http://paypal.me/@Model.PayeeID">
+            <p class="with-border centered">
+                MY PONZI PAL
+            </p>
+        </a>
+
+        <img src="~/img/Deepak.jpg" class="images" />
+
+        <a href="http://paypal.me/@Model.PayeeID">
+            <p class="with-border centered">
+                MY PONZI PAL
+            </p>
+        </a>
 
     </div>
 </body>

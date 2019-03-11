@@ -26,3 +26,16 @@ function incrementbase(offset) {
     L4.innerHTML = Math.pow(base, 4).toLocaleString('en');
     L5.innerHTML = Math.pow(base, 5).toLocaleString('en');
 }
+
+function AddNewUser(sender) {
+    //sender is the button, parent is the paragraph, childNode[1] is the input
+
+    let input = sender.parentElement.childNodes[1];
+
+    if (input.value === "") { return false; }
+
+    let href = "/share/" + SponsorID + "|" + input.value;
+
+    window.location.href = href;
+
+}

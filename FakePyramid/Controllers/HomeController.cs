@@ -16,24 +16,8 @@ namespace FakePyramid.Controllers
 
             using (DWKDBDataContext db = new DWKDBDataContext())
             {
-
-                var idParts = id.Split('|');
-                string userID = idParts[0];
-
-                //if there is a second parameter then we need to insert the
-                //new user before we display the page.
-                if (idParts.Length > 1)
-                {
-                    string newUserID = idParts[1];
-                    db.User_Insert(userID, newUserID);
-                    Response.Redirect("/" + newUserID);
-                }
-
-                //grab the user data and pass it to the view
-                var userData = db.User_SelectByUserID(userID).SingleOrDefault();
-
+                var userData = db.User_SelectByUserID(id).SingleOrDefault();
                 return View(userData);
-
             }
         }
     }

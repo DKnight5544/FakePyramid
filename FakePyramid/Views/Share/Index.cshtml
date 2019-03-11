@@ -1,0 +1,103 @@
+﻿@model FakePyramid.Models.ShareModel
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        @Model.SponsorName.ToUpper()'s Sharing Page
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300">
+    <link rel="stylesheet" href="~/css/site.css?@DateTime.Now.Ticks">
+    <script>let SponsorID = "@Model.SponsorName";</script>
+    <script type="text/javascript" src="~/js/Share.js?@DateTime.Now.Ticks"></script>
+</head>
+
+<body onload="body_onload();">
+    <div class="main-div">
+
+        <div class="box-shadow-container">
+            <table class="stats-table">
+                <tr>
+                    <td colspan="4" class="stats-title">PYRAMID TOY</td>
+                </tr>
+                <tr>
+                    <td class="stats-col1 stats-col-headings">Level</td>
+                    <td class="stats-col2 stats-col-headings"><button class="test-button" onclick="incrementbase(-1)">-</button></td>
+                    <td class="stats-col2 stats-col-headings"><div id="L0"></div></td>
+                    <td class="stats-col2 stats-col-headings"><button class="test-button" onclick="incrementbase(+1)">+</button></td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">1</td>
+                    <td colspan="3" class="stats-col2"><div id="L1"></div></td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">2</td>
+                    <td colspan="3" class="stats-col2"><div id="L2"></div></td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">3</td>
+                    <td colspan="3" class="stats-col2"><div id="L3"></div></td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">4</td>
+                    <td colspan="3" class="stats-col2"><div id="L4"></div></td>
+                </tr>
+                <tr>
+                    <td class="stats-col1">5</td>
+                    <td colspan="3" class="stats-col2"><div id="L5"></div></td>
+                </tr>
+            </table>
+        </div>
+
+        <h3 class="para-heading">From the desk of @Model.SponsorName</h3>
+        <p>
+            I want to help you to use the <b>power of pyramiding</b> to put your <b>PayPal.Me</b> payment page in front of as many people as possible.
+        </p>
+        <p>
+            <b>Why? </b>Because this website is going to ask each person on your <b>5th level</b> to send you a small gift!
+        </p>
+
+        <p>
+            Wouldn't it be great if serveral thousand people sent you a <b>$10</b> gift?
+        </p>
+
+        <p>
+            <b>And why not?</b> Unconfirmed benefits of random giving may include...
+        </p>
+
+        <ul>
+            <li>A warm fuzzy feeling.</li>
+            <li>Inner Peace.</li>
+            <li>Spontanious limb regeneration.</li>
+            <li>Reduced level of email spam.</li>
+            <li>Farts that don't stink any more.</li>
+            <li>Gender confusion resolution.</li>
+            <li>And even more when you join. . .</li>
+        </ul>
+
+
+        <p>
+            <b>To get started</b>, you will need to get your free
+            <a href="https://www.paypal.me/" target="_blank"><b>PayPal.Me</b></a>
+            link and key it in here . . .
+        </p>
+
+        <p class="para-heading with-border">
+            paypal.me/<input type="text" class="paypal-handle-input" />&nbsp;&nbsp;&nbsp;
+            <button onclick="AddNewUser(this);" class="test-button">GO</button>
+        </p>
+        <br />
+        <p>
+            <b>And don't worry</b>, there is no risk.  The <b>only</b> thing PayPal 
+            allows your link to be used for is to <b>send you money.</b>
+        </p>
+
+        <img src="~/img/Deepak.jpg" class="images" />
+
+    </div>
+</body>
+</html>
