@@ -20,9 +20,9 @@ namespace FakePyramid
             );
 
             routes.MapRoute(
-                name: "ShareRoute",
-                url: "{controller}/{id}",
-                defaults: new { controller = "Share", action = "Index", id = UrlParameter.Optional }
+                name: "OtherRoute",
+                url: "{action}/{id}",
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
         }

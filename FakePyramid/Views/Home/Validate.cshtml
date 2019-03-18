@@ -1,0 +1,44 @@
+﻿
+@model FakePyramid.Models.ValidationMessage
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>BigButton.me</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300">
+    <link rel="stylesheet" href="~/css/Validate.css?@DateTime.Now.Ticks">
+    <script type="text/javascript" src="~/js/Validate.js?@DateTime.Now.Ticks"></script>
+    <script>let userName = "@Model.UserName";</script>
+</head>
+<body>
+    <div class="main-div">
+
+        @if (Model.Message == "BAD")
+        {
+            <p>There was a problem validating your transaction.</p>
+            <p>Please Try Again.</p>
+        }
+
+        else if (Model.Message == "SMALL")
+        {
+            <p>
+                The required amount to create a <b>Big Button</b> is $@Model.RequiredAmount,
+                the amount of your transaction was only $@Model.ActualAmount.
+            </p>
+            <p>
+                To correct this you must return your sponsors page and initiate a new
+                transaction for the full amount.
+            </p>
+        }
+
+            <p><button onclick="ReturnToUserPage();" class="return-button">Return</button></p>
+
+    </div>
+</body>
+</html>

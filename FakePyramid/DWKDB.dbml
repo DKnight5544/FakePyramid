@@ -2,24 +2,35 @@
   <Connection Mode="WebSettings" ConnectionString="Data Source=ie0p1a01o5.database.windows.net;Initial Catalog=DWKDB;Persist Security Info=True;User ID=FP_User" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="DWKDBConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="FP.UserView" Member="UserViews">
     <Type Name="UserView" Id="ID1">
-      <Column Name="UserID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="ParentID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
-      <Column Name="PayeeID" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TransID" Type="System.String" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="UserName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="ParentName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="PayeeName" Type="System.String" DbType="VarChar(30) NOT NULL" CanBeNull="false" />
       <Column Name="JoinDateTime" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="L1" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="L2" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="L3" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="L4" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="L5" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="InvitedCount" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="NextPayeeName" Type="System.String" DbType="VarChar(30)" CanBeNull="true" />
+      <Column Name="GiftAmount" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="FP.User_Insert" Method="User_Insert">
-    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(30)" />
-    <Parameter Name="NewUserID" Parameter="newUserID" Type="System.String" DbType="VarChar(30)" />
-    <Return Type="System.Int32" />
-  </Function>
-  <Function Name="FP.User_SelectByUserID" Method="User_SelectByUserID">
-    <Parameter Name="UserID" Parameter="userID" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="TransID" Parameter="transID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="ParentName" Parameter="parentName" Type="System.String" DbType="VarChar(30)" />
+    <Parameter Name="PayeeName" Parameter="payeeName" Type="System.String" DbType="VarChar(30)" />
     <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="FP.User_SelectByUserName" Method="User_SelectByUserName">
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(30)" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="FP.User_UpdateUserName" Method="User_UpdateUserName">
+    <Parameter Name="TransID" Parameter="transID" Type="System.String" DbType="VarChar(20)" />
+    <Parameter Name="UserName" Parameter="userName" Type="System.String" DbType="VarChar(20)" />
+    <ElementType IdRef="ID1" />
+  </Function>
+  <Function Name="FP.Setting_SelectByKey" Method="Setting_SelectByKey">
+    <Parameter Name="Key" Parameter="key" Type="System.String" DbType="VarChar(20)" />
+    <ElementType Name="Setting_SelectByKeyResult">
+      <Column Name="Value" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+    </ElementType>
   </Function>
 </Database>

@@ -1,190 +1,26 @@
 ﻿
-@model UserView
-
 <!DOCTYPE html>
 
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>
-        @Model.UserID.ToUpper()'s Home Page
+        BigButton.me
     </title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300">
-    <link rel="stylesheet" href="~/css/site.css?@DateTime.Now.Ticks">
-    <script>let userID = "@Model.UserID";</script>
-    <script type="text/javascript" src="~/js/Home.js?@DateTime.Now.Ticks"></script>
+    <link rel="stylesheet" href="~/css/HomeIndex.css?@DateTime.Now.Ticks">
+    <script type="text/javascript" src="~/js/HomeIndex.js?@DateTime.Now.Ticks"></script>
 </head>
 
 <body onload="body_onload();">
     <div class="main-div">
 
-        <div class="box-shadow-container">
-            <table class="stats-table">
-                <tr>
-                    <td colspan="5" class="stats-title">@Model.UserID.ToUpper()</td>
-                </tr>
-                <tr>
-                    <td class="stats-col1 stats-col-headings">Level</td>
-                    <td class="stats-col2 stats-col-headings"><button class="test-button" onclick="incrementbase(-1)">-</button></td>
-                    <td class="stats-col2 stats-col-headings"><div id="L0"></div></td>
-                    <td class="stats-col2 stats-col-headings"><button class="test-button" onclick="incrementbase(+1)">+</button></td>
-                    <td class="stats-col3 stats-col-headings">You</td>
-                </tr>
-                <tr>
-                    <td class="stats-col1">1</td>
-                    <td colspan="3" class="stats-col2"><div id="L1"></div></td>
-                    <td class="stats-col3">@Model.L1</td>
-                </tr>
-                <tr>
-                    <td class="stats-col1">2</td>
-                    <td colspan="3" class="stats-col2"><div id="L2"></div></td>
-                    <td class="stats-col3">@Model.L2</td>
-                </tr>
-                <tr>
-                    <td class="stats-col1">3</td>
-                    <td colspan="3" class="stats-col2"><div id="L3"></div></td>
-                    <td class="stats-col3">@Model.L3</td>
-                </tr>
-                <tr>
-                    <td class="stats-col1">4</td>
-                    <td colspan="3" class="stats-col2"><div id="L4"></div></td>
-                    <td class="stats-col3">@Model.L4</td>
-                </tr>
-                <tr>
-                    <td class="stats-col1">5</td>
-                    <td colspan="3" class="stats-col2"><div id="L5"></div></td>
-                    <td class="stats-col3">@Model.L5</td>
-                </tr>
-            </table>
-        </div>
+        <h3>Find My Home Page</h3>
+        <b>paypal.me/</b>
+        <input id="ppinput" type="text" class="paypal-handle-input" />
+        <br />
+        <button onclick="findPage();" class="paypal-button">GO</button>
 
-        <a href="/share/@Model.UserID">
-            <p class="with-border centered">
-                MY SHARE LINK
-            </p>
-        </a>
-
-        <a href="http://paypal.me/@Model.PayeeID">
-            <p class="with-border centered">
-                MY PONZI PAL
-            </p>
-        </a>
-
-        <p class="para-heading">Bookmark This Page: Now</p>
-        <p>
-            It is important that you can always get back here. On an Android phone it
-            is even possible for you to <b>add this page to your home screen</b> for easier
-            access.
-        </p>
-
-        <p class="para-heading">Now Test Your Link</p>
-        <p>
-            This link should open to YOUR PayPal.Me page. If it doesn't
-            then you may need try again. . .
-        </p>
-
-        <a href="http://paypal.me/@Model.UserID">
-            <p class="with-border centered">
-                @Model.UserID.ToUpper()
-            </p>
-        </a>
-
-        <p class="para-heading">Start Building Your Empire</p>
-        <p>
-            Use your "My Share Link" button above to switch to your share page. Once
-            there, use the advanced sharing features of your cell
-            phone to invite others to join your organization.
-        </p>
-
-
-        <p class="para-heading">Watch Your Pyramid Grow</p>
-        <p>
-            Use the chart at the top of the page to watch
-            your pyramid grow.  Level By Level. Day by Day.
-        </p>
-        <p>
-            <b>Remember:</b> This website will ask each person on
-            your <b>fifth (5)</b> level to consider giving you a
-            <b>$10</b> gift.  Just for the fun of it.
-        </p>
-
-
-        <p class="para-heading">Are <i>You</i> Having Fun?</p>
-        <p>
-            Then consider giving a <b>$10</b> gift to your <b>Ponzi Pal</b>:
-            the person five (5) levels above you in the organization. Just use
-            the many "My Ponzi Pal" links on this page.
-        </p>
-        <p>
-            <b>Note:</b> if you are close enough to the top of the pyramid,
-            then your Ponzi Pal will be <b>wigiwiz</b> himself.
-        </p>
-
-        <a href="http://paypal.me/@Model.PayeeID">
-            <p class="with-border centered">
-                MY PONZI PAL
-            </p>
-        </a>
-
-        <p class="para-heading">Disclaimer</p>
-        <p>
-            Giving is not required to enjoy watching your organization grow,
-            or to recieve gifts. We cannot guarantee that anyone will ever send you a
-            gift. We can only ask.
-        </p>
-
-        <p class="para-heading">Some Possible Benefits</p>
-        <p>
-            Here is a short list of as yet unconfirmed benefits of
-            giving:
-        </p>
-
-        <ul>
-            <li>Spontanious Hair Growth</li>
-            <li>Weight Loss</li>
-            <li>X-Ray Vision</li>
-            <li>Increased Sex Appeal</li>
-        </ul>
-
-        <a href="http://paypal.me/@Model.PayeeID">
-            <p class="with-border centered">
-                MY PONZI PAL
-            </p>
-        </a>
-
-        <ul>
-            <li>Improved Memory</li>
-            <li>Longer, Harder Erections</li>
-            <li>Kids Become Compliant</li>
-            <li>Wives Become Submissive</li>
-        </ul>
-
-        <a href="http://paypal.me/@Model.PayeeID">
-            <p class="with-border centered">
-                MY PONZI PAL
-            </p>
-        </a>
-
-        <ul>
-            <li>Pets Quit Begging</li>
-            <li>Underwear Stains Disappear</li>
-            <li>Cell Phone Batteries Last Longer</li>
-            <li>The List keeps Growing</li>
-        </ul>
-
-        <a href="http://paypal.me/@Model.PayeeID">
-            <p class="with-border centered">
-                MY PONZI PAL
-            </p>
-        </a>
-
-        <img src="~/img/Deepak.jpg" class="images" />
-
-        <a href="http://paypal.me/@Model.PayeeID">
-            <p class="with-border centered">
-                MY PONZI PAL
-            </p>
-        </a>
 
     </div>
 </body>

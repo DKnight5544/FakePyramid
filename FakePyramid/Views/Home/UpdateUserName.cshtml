@@ -1,0 +1,31 @@
+﻿
+@model UserView
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        BigButton.me
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300">
+    <link rel="stylesheet" href="~/css/UpdateUserName.css?@DateTime.Now.Ticks">
+    <script type="text/javascript" src="~/js/UpdateUserName.js?@DateTime.Now.Ticks"></script>
+    <script>let TransID = "@Model.TransID";</script>
+</head>
+
+<body onload="body_onload();">
+    <div class="main-div">
+
+
+        <h3>Please Complete Your Link</h3>
+        <b>paypal.me/</b>
+        <input id="ppinput" type="text" class="paypal-handle-input" />
+        <br />
+        <button onclick="Preview();" class="paypal-button">PREVIEW</button>
+        <button onclick="UpdateUserName();" class="paypal-button">GO</button>
+
+    </div>
+</body>
+</html>
