@@ -1,27 +1,30 @@
 ﻿
 
 let input;
+let preview_anchor;
 
 function body_onload() {
     // Execute a function when the user releases a key on the keyboard
     input = document.getElementById("ppinput");
+    preview_anchor = document.getElementById("preview-anchor");
 }
 
-function Preview() {
+
+function preview() {
 
     if (input.value === "") { return false; }
 
-    let href = "https://paypal.me/" + input.value;
+    preview_anchor.href = "https://paypal.me/" + input.value;
+    preview_anchor.click();
 
-    window.location.href = href;
 
 }
 
-function UpdateUserName() {
+function update() {
 
     if (input.value === "") { return false; }
 
-    let href = "/UpdateName/" + TransID + "|" + input.value;
+    let href = "/home/update/" + UserID + "|" + input.value;
 
     window.location.href = href;
 

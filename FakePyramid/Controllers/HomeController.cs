@@ -21,7 +21,7 @@ namespace FakePyramid.Controllers
 
             using (DWKDBDataContext db = new DWKDBDataContext())
             {
-                var userData = db.User_SelectByUserName(id).SingleOrDefault();
+                var userData = db.User_Select(id).SingleOrDefault();
 
                 if (userData == null)
                 {
@@ -29,7 +29,7 @@ namespace FakePyramid.Controllers
                     //return View();
                 }
 
-                if (userData.UserName == null) return View("UpdateUserName", userData);
+                if (string.IsNullOrWhiteSpace(userData.UserName)) return View("Update", userData);
                 else return View("User", userData);
             }
         }
@@ -51,8 +51,7 @@ namespace FakePyramid.Controllers
 
             var idParts = id.Split('|');
             string userName = idParts[0];
-            string payeeName = idParts[1];
-            string transID = idParts[2];
+            string transID = idParts[1];
 
             string formData = "USER=davidwayneknight_api1.comcast.net"
                             + "&PWD=FBQGM3B8KTGEKWGK"
@@ -95,13 +94,17 @@ namespace FakePyramid.Controllers
                 using (DWKDBDataContext db = new DWKDBDataContext())
                 {
                     string amount = content.Split('&').Single(x => x.Contains("AMT")).Split('=')[1];
-                    decimal actualAmount = decimal.Parse(amount);
                     var value = db.Setting_SelectByKey("GIFT_AMOUNT").SingleOrDefault();
+                    string payeeID = content.Split('&').Single(x => x.Contains("RECEIVERID")).Split('=')[1];
+                    string newUserID = content.Split('&').Single(x => x.Contains("PAYERID")).Split('=')[1];
+
+
+                    decimal actualAmount = decimal.Parse(amount);
                     decimal requiredAmount = decimal.Parse(value.Value);
 
                     if (actualAmount >= requiredAmount)
                     {
-                        var userData = db.User_Insert(transID, userName, payeeName).SingleOrDefault();
+                        var userData = db.User_Insert(payeeID, newUserID, userName).SingleOrDefault();
 
                         if (userData == null)
                         {
@@ -109,7 +112,7 @@ namespace FakePyramid.Controllers
                         }
                         else
                         {
-                            Response.Redirect("/" + userData.TransID);
+                            Response.Redirect("/home/index/" + userData.UserName);
                         }
 
                         HttpContext.ApplicationInstance.CompleteRequest();
@@ -128,7 +131,7 @@ namespace FakePyramid.Controllers
 
         }
 
-        public void UpdateName(string id)
+        public void Update(string id)
         {
             if (!Request.IsLocal && !Request.IsSecureConnection)
             {
@@ -144,13 +147,13 @@ namespace FakePyramid.Controllers
             }
 
             var idParts = id.Split('|');
-            string transID = idParts[0];
+            string UserID = idParts[0];
             string userName = idParts[1];
 
             using (DWKDBDataContext db = new DWKDBDataContext())
             {
 
-                var userData = db.User_UpdateUserName(transID, userName).SingleOrDefault();
+                var userData = db.User_Update(UserID, userName).SingleOrDefault();
 
                 if (userData == null)
                 {
@@ -174,7 +177,76 @@ namespace FakePyramid.Controllers
             msg.RequiredAmount = 10;
             msg.ActualAmount = 5;
 
-            return View("Validate",msg);
+            return View("Validate", msg);
+        }
+
+
+        public ActionResult Customize(string id)
+        {
+            if (!Request.IsLocal && !Request.IsSecureConnection)
+            {
+                string redirectUrl = Request.Url.ToString().Replace("http:", "https:");
+                Response.Redirect(redirectUrl, false);
+                HttpContext.ApplicationInstance.CompleteRequest();
+            }
+
+            if (string.IsNullOrWhiteSpace(id)) return View("/Index");
+
+
+            using (DWKDBDataContext db = new DWKDBDataContext())
+            {
+
+                string userName;
+                string imageURL;
+                string buttonText;
+                UserView userData;
+
+                string[] idParts = id.Split('|');
+                userName = idParts[0];
+
+                if (id.Length == 3)
+                {
+                    imageURL = idParts[1];
+                    buttonText = idParts[2];
+                    userData = db.User_Customize(userName, imageURL, buttonText).SingleOrDefault();
+                }
+                else
+                {
+                    userData = db.User_Select(userName).SingleOrDefault();
+                }
+
+
+                if (userData == null) Response.Redirect("/");
+                return View("Customize", userData);
+
+
+            }
+        }
+
+        [HttpPost]
+        public ActionResult UpdateButton(ButtonCustomizations formData)
+        {
+            if (!Request.IsLocal && !Request.IsSecureConnection)
+            {
+                string redirectUrl = Request.Url.ToString().Replace("http:", "https:");
+                Response.Redirect(redirectUrl, false);
+                HttpContext.ApplicationInstance.CompleteRequest();
+            }
+
+            using (DWKDBDataContext db = new DWKDBDataContext())
+            {
+
+                var userData = db.User_Customize(
+                    formData.UserName, 
+                    formData.ImageUrl, 
+                    formData.ButtonText
+                    ).SingleOrDefault();
+
+                if (userData == null) Response.Redirect("/");
+                return View("Customize", userData);
+
+
+            }
         }
 
     }

@@ -1,0 +1,56 @@
+﻿
+@model UserView
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        BigButton.me
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300">
+    <link rel="stylesheet" href="~/css/site.css?@DateTime.Now.Ticks">
+    <script type="text/javascript" src="~/js/Customize.js?@DateTime.Now.Ticks"></script>
+
+</head>
+
+<body onload="body_onload();">
+    <div class="main-div">
+
+        <a href="https://paypal.me/@Model.UserName" target="_blank">
+            <div class="button-div">
+                <img src="@Model.ImageUrl" class="button-image " />
+                <div class="button-text">@Model.ButtonText</div>
+            </div>
+        </a>
+
+        <h3>Customize Your Big Button</h3>
+
+        @using (Html.BeginForm("UpdateButton", "Home", FormMethod.Post))
+        {
+
+            <span><b>Background image URL</b></span>
+
+            <input name="ImageUrl" type="text" class="paypal-handle-input" value="@Model.ImageUrl" />
+            <br />
+
+            <br />
+
+            <span><b>Button Text</b></span>
+            <input name="ButtonText" type="text" class="paypal-handle-input" value="@Model.ButtonText" />
+            <br />
+
+            <button type="submit" class="paypal-button">GO</button>
+
+            <button type="button" onclick="window.location.href = '/home/index/@Model.UserName'" class="paypal-button">DONE</button>
+
+            <input type="hidden" name="UserName" value="@Model.UserName" />
+
+        }
+
+
+
+    </div>
+</body>
+</html>

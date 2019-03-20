@@ -15,14 +15,8 @@ namespace FakePyramid
 
             routes.MapRoute(
                 name: "Default",
-                url: "{id}",
+                url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional}
-            );
-
-            routes.MapRoute(
-                name: "OtherRoute",
-                url: "{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
 
         }

@@ -1,0 +1,31 @@
+﻿
+@model UserView
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>
+        BigButton.me
+    </title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Titillium+Web:300">
+    <link rel="stylesheet" href="~/css/site.css?@DateTime.Now.Ticks">
+    <script type="text/javascript" src="~/js/Update.js?@DateTime.Now.Ticks"></script>
+    <script>let UserID = "@Model.UserID";</script>
+</head>
+
+<body onload="body_onload();">
+    <div class="main-div">
+
+
+        <h3>Complete Your Link</h3>
+        <div class="input-div"><b>paypal.me/</b></div>
+        <input id="ppinput" type="text" class="paypal-handle-input" />
+        <div onclick="preview();" class="preview-div">PREVIEW</div>
+        <a id="preview-anchor" href="" target="_blank" class="preview-div"></a>
+        <button onclick="update();" class="paypal-button">GO</button>
+
+    </div>
+</body>
+</html>

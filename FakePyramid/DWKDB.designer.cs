@@ -70,32 +70,39 @@ namespace FakePyramid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Insert")]
-		public ISingleResult<UserView> User_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TransID", DbType="VarChar(20)")] string transID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ParentName", DbType="VarChar(30)")] string parentName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PayeeName", DbType="VarChar(30)")] string payeeName)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), transID, parentName, payeeName);
-			return ((ISingleResult<UserView>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_SelectByUserName")]
-		public ISingleResult<UserView> User_SelectByUserName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName);
-			return ((ISingleResult<UserView>)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_UpdateUserName")]
-		public ISingleResult<UserView> User_UpdateUserName([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TransID", DbType="VarChar(20)")] string transID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(20)")] string userName)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), transID, userName);
-			return ((ISingleResult<UserView>)(result.ReturnValue));
-		}
-		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.Setting_SelectByKey")]
 		public ISingleResult<Setting_SelectByKeyResult> Setting_SelectByKey([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Key", DbType="VarChar(20)")] string key)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key);
 			return ((ISingleResult<Setting_SelectByKeyResult>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Insert")]
+		public ISingleResult<UserView> User_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PayeeID", DbType="VarChar(15)")] string payeeID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NewUserID", DbType="VarChar(15)")] string newUserID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), payeeID, newUserID, userName);
+			return ((ISingleResult<UserView>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Select")]
+		public ISingleResult<UserView> User_Select([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Key", DbType="VarChar(30)")] string key)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key);
+			return ((ISingleResult<UserView>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Update")]
+		public ISingleResult<UserView> User_Update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(15)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(20)")] string userName)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, userName);
+			return ((ISingleResult<UserView>)(result.ReturnValue));
+		}
+		
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Customize")]
+		public ISingleResult<UserView> User_Customize([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(MAX)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ButtonText", DbType="VarChar(100)")] string buttonText)
+		{
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, imageUrl, buttonText);
+			return ((ISingleResult<UserView>)(result.ReturnValue));
 		}
 	}
 	
@@ -103,17 +110,19 @@ namespace FakePyramid
 	public partial class UserView
 	{
 		
-		private string _TransID;
+		private string _UserID;
+		
+		private string _PayeeID;
 		
 		private string _UserName;
 		
-		private string _ParentName;
+		private int _TransactionCount;
+		
+		private string _ImageUrl;
+		
+		private string _ButtonText;
 		
 		private string _PayeeName;
-		
-		private System.DateTime _JoinDateTime;
-		
-		private int _InvitedCount;
 		
 		private string _NextPayeeName;
 		
@@ -123,18 +132,34 @@ namespace FakePyramid
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransID", DbType="VarChar(20) NOT NULL", CanBeNull=false)]
-		public string TransID
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserID", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string UserID
 		{
 			get
 			{
-				return this._TransID;
+				return this._UserID;
 			}
 			set
 			{
-				if ((this._TransID != value))
+				if ((this._UserID != value))
 				{
-					this._TransID = value;
+					this._UserID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PayeeID", DbType="VarChar(15) NOT NULL", CanBeNull=false)]
+		public string PayeeID
+		{
+			get
+			{
+				return this._PayeeID;
+			}
+			set
+			{
+				if ((this._PayeeID != value))
+				{
+					this._PayeeID = value;
 				}
 			}
 		}
@@ -155,23 +180,55 @@ namespace FakePyramid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ParentName", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
-		public string ParentName
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionCount", DbType="Int NOT NULL")]
+		public int TransactionCount
 		{
 			get
 			{
-				return this._ParentName;
+				return this._TransactionCount;
 			}
 			set
 			{
-				if ((this._ParentName != value))
+				if ((this._TransactionCount != value))
 				{
-					this._ParentName = value;
+					this._TransactionCount = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PayeeName", DbType="VarChar(30) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageUrl", DbType="VarChar(MAX)")]
+		public string ImageUrl
+		{
+			get
+			{
+				return this._ImageUrl;
+			}
+			set
+			{
+				if ((this._ImageUrl != value))
+				{
+					this._ImageUrl = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ButtonText", DbType="VarChar(100)")]
+		public string ButtonText
+		{
+			get
+			{
+				return this._ButtonText;
+			}
+			set
+			{
+				if ((this._ButtonText != value))
+				{
+					this._ButtonText = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PayeeName", DbType="VarChar(30)")]
 		public string PayeeName
 		{
 			get
@@ -183,38 +240,6 @@ namespace FakePyramid
 				if ((this._PayeeName != value))
 				{
 					this._PayeeName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_JoinDateTime", DbType="DateTime NOT NULL")]
-		public System.DateTime JoinDateTime
-		{
-			get
-			{
-				return this._JoinDateTime;
-			}
-			set
-			{
-				if ((this._JoinDateTime != value))
-				{
-					this._JoinDateTime = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_InvitedCount", DbType="Int NOT NULL")]
-		public int InvitedCount
-		{
-			get
-			{
-				return this._InvitedCount;
-			}
-			set
-			{
-				if ((this._InvitedCount != value))
-				{
-					this._InvitedCount = value;
 				}
 			}
 		}

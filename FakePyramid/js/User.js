@@ -19,25 +19,14 @@ function body_onload() {
     resetDemoValues();
     setInterval(doubleDemoValue, 2000);
 
-    // Execute a function when the user releases a key on the keyboard
-    input.addEventListener("keyup", function (event) {
-        // Number 13 is the "Enter" key on the keyboard
-        if (event.keyCode === 13) {
-            // Cancel the default action, if needed
-            event.preventDefault();
-            // Trigger the button element with a click
-            AddNewUser();
-        }
-    });
-
 }
 
-function AddNewUser() {
+function validate() {
     //sender is the button, parent is the paragraph, childNode[1] is the input
     
     if (input.value === "") { return false; }
 
-    let href = "/Validate/" + UserName + "|" + PayeeName + "|" + input.value;
+    let href = "/home/validate/" + UserName + "|" + input.value;
 
     window.location.href = href;
 
