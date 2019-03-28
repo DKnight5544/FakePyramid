@@ -1,8 +1,10 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 using System.Net;
 using System.IO;
 using FakePyramid.Models;
+using System;
 
 namespace FakePyramid.Controllers
 {
@@ -30,7 +32,16 @@ namespace FakePyramid.Controllers
                 }
 
                 if (string.IsNullOrWhiteSpace(userData.UserName)) return View("Update", userData);
-                else return View("User", userData);
+                else
+                {
+                    if (userData.LastClickDateTime.HasValue)
+                    {
+                        var offset = DateTime.Now.Subtract(userData.ServerTime);
+                        userData.LastClickDateTime = (userData.LastClickDateTime + offset);
+                    }
+
+                    return View("User", userData);
+                }
             }
         }
 
@@ -93,14 +104,14 @@ namespace FakePyramid.Controllers
 
                 using (DWKDBDataContext db = new DWKDBDataContext())
                 {
-                    string amount = content.Split('&').Single(x => x.Contains("AMT")).Split('=')[1];
-                    var value = db.Setting_SelectByKey("GIFT_AMOUNT").SingleOrDefault();
+                    string amount = content.Split('&').Single(x => x.Contains("AMT") && !x.Contains("FEEAMT")).Split('=')[1];
+                    var price = db.Setting_SelectByKey("PRICE").SingleOrDefault();
                     string payeeID = content.Split('&').Single(x => x.Contains("RECEIVERID")).Split('=')[1];
                     string newUserID = content.Split('&').Single(x => x.Contains("PAYERID")).Split('=')[1];
 
 
                     decimal actualAmount = decimal.Parse(amount);
-                    decimal requiredAmount = decimal.Parse(value.Value);
+                    decimal requiredAmount = decimal.Parse(price.Value);
 
                     if (actualAmount >= requiredAmount)
                     {
@@ -112,7 +123,7 @@ namespace FakePyramid.Controllers
                         }
                         else
                         {
-                            Response.Redirect("/home/index/" + userData.UserName);
+                            Response.Redirect("/home/index/" + userData.UserID);
                         }
 
                         HttpContext.ApplicationInstance.CompleteRequest();
@@ -161,7 +172,7 @@ namespace FakePyramid.Controllers
                 }
                 else
                 {
-                    Response.Redirect("/" + userData.UserName);
+                    Response.Redirect("/Home/Index/" + userData.UserName);
                 }
 
                 HttpContext.ApplicationInstance.CompleteRequest();
@@ -172,8 +183,8 @@ namespace FakePyramid.Controllers
         {
             ValidationMessage msg = new ValidationMessage();
 
+            msg.Message = "BAD";
             msg.UserName = "wigiwiz";
-            msg.Message = "SMALL";
             msg.RequiredAmount = 10;
             msg.ActualAmount = 5;
 
@@ -181,7 +192,7 @@ namespace FakePyramid.Controllers
         }
 
 
-        public ActionResult Customize(string id)
+        public void ButtonClick(string id)
         {
             if (!Request.IsLocal && !Request.IsSecureConnection)
             {
@@ -190,41 +201,21 @@ namespace FakePyramid.Controllers
                 HttpContext.ApplicationInstance.CompleteRequest();
             }
 
-            if (string.IsNullOrWhiteSpace(id)) return View("/Index");
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                Response.Redirect("/");
+                HttpContext.ApplicationInstance.CompleteRequest();
+            }
 
 
             using (DWKDBDataContext db = new DWKDBDataContext())
             {
-
-                string userName;
-                string imageURL;
-                string buttonText;
-                UserView userData;
-
-                string[] idParts = id.Split('|');
-                userName = idParts[0];
-
-                if (id.Length == 3)
-                {
-                    imageURL = idParts[1];
-                    buttonText = idParts[2];
-                    userData = db.User_Customize(userName, imageURL, buttonText).SingleOrDefault();
-                }
-                else
-                {
-                    userData = db.User_Select(userName).SingleOrDefault();
-                }
-
-
-                if (userData == null) Response.Redirect("/");
-                return View("Customize", userData);
-
-
+                db.User_UpdateClickCounter(id);
+                Response.Redirect("http://paypal.me/" + id);
             }
         }
 
-        [HttpPost]
-        public ActionResult UpdateButton(ButtonCustomizations formData)
+        public string GetClicks(string id)
         {
             if (!Request.IsLocal && !Request.IsSecureConnection)
             {
@@ -233,20 +224,46 @@ namespace FakePyramid.Controllers
                 HttpContext.ApplicationInstance.CompleteRequest();
             }
 
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                Response.Redirect("/");
+                HttpContext.ApplicationInstance.CompleteRequest();
+            }
+
+            var idParts = id.Split('|');
+            string sticks = idParts[0];
+            long ticks = long.Parse(sticks);
+            string userName = idParts[1];
+
             using (DWKDBDataContext db = new DWKDBDataContext())
             {
+                ClickDataModel clickData = new ClickDataModel();
+                var userData = db.User_Select(userName).SingleOrDefault();
+                string json = "";
 
-                var userData = db.User_Customize(
-                    formData.UserName, 
-                    formData.ImageUrl, 
-                    formData.ButtonText
-                    ).SingleOrDefault();
+                if (userData != null)
+                {
 
-                if (userData == null) Response.Redirect("/");
-                return View("Customize", userData);
+                    clickData.ClickCount = userData.ClickCount.ToString("000,000,000");
 
+                    if (userData.LastClickDateTime.HasValue)
+                    {
+                        DateTime localTime = new DateTime(ticks);
+                        localTime = localTime.Subtract(new TimeSpan(7, 0, 0));
+                        var offset = localTime.Subtract(userData.ServerTime);
+                        clickData.LastClickedDate = (userData.LastClickDateTime + offset).ToString();
+                    }
+                    else
+                    {
+                        clickData.LastClickedDate = "Not Clicked Yet";
+                    }
 
+                    json = new JavaScriptSerializer().Serialize(clickData);
+                }
+
+                return json;
             }
+
         }
 
     }

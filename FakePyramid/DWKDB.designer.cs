@@ -22,7 +22,7 @@ namespace FakePyramid
 	using System;
 	
 	
-	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="DWKDB")]
+	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="ph15822995272_BigButton")]
 	public partial class DWKDBDataContext : System.Data.Linq.DataContext
 	{
 		
@@ -33,7 +33,7 @@ namespace FakePyramid
     #endregion
 		
 		public DWKDBDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["DWKDBConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["ph15822995272_BigButtonConnectionString"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -70,43 +70,43 @@ namespace FakePyramid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.Setting_SelectByKey")]
-		public ISingleResult<Setting_SelectByKeyResult> Setting_SelectByKey([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Key", DbType="VarChar(20)")] string key)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="BigButtonUser.User_UpdateClickCounter")]
+		public int User_UpdateClickCounter([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key);
-			return ((ISingleResult<Setting_SelectByKeyResult>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName);
+			return ((int)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Insert")]
-		public ISingleResult<UserView> User_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PayeeID", DbType="VarChar(15)")] string payeeID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NewUserID", DbType="VarChar(15)")] string newUserID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="BigButtonUser.User_Update")]
+		public ISingleResult<UserView> User_Update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(15)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), payeeID, newUserID, userName);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, userName);
 			return ((ISingleResult<UserView>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Select")]
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="BigButtonUser.User_Select")]
 		public ISingleResult<UserView> User_Select([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Key", DbType="VarChar(30)")] string key)
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key);
 			return ((ISingleResult<UserView>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Update")]
-		public ISingleResult<UserView> User_Update([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserID", DbType="VarChar(15)")] string userID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(20)")] string userName)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="BigButtonUser.User_Insert")]
+		public ISingleResult<UserView> User_Insert([global::System.Data.Linq.Mapping.ParameterAttribute(Name="PayeeID", DbType="VarChar(15)")] string payeeID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="NewUserID", DbType="VarChar(15)")] string newUserID, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userID, userName);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), payeeID, newUserID, userName);
 			return ((ISingleResult<UserView>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="FP.User_Customize")]
-		public ISingleResult<UserView> User_Customize([global::System.Data.Linq.Mapping.ParameterAttribute(Name="UserName", DbType="VarChar(30)")] string userName, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ImageUrl", DbType="VarChar(MAX)")] string imageUrl, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="ButtonText", DbType="VarChar(100)")] string buttonText)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="BigButtonUser.Setting_SelectByKey")]
+		public ISingleResult<Setting_SelectByKeyResult> Setting_SelectByKey([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Key", DbType="VarChar(20)")] string key)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), userName, imageUrl, buttonText);
-			return ((ISingleResult<UserView>)(result.ReturnValue));
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), key);
+			return ((ISingleResult<Setting_SelectByKeyResult>)(result.ReturnValue));
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="FP.UserView")]
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="BigButtonUser.UserView")]
 	public partial class UserView
 	{
 		
@@ -116,17 +116,19 @@ namespace FakePyramid
 		
 		private string _UserName;
 		
+		private string _PayeeName;
+		
 		private int _TransactionCount;
 		
-		private string _ImageUrl;
+		private int _ClickCount;
 		
-		private string _ButtonText;
-		
-		private string _PayeeName;
+		private System.Nullable<System.DateTime> _LastClickDateTime;
 		
 		private string _NextPayeeName;
 		
-		private System.Nullable<int> _GiftAmount;
+		private System.Nullable<decimal> _Price;
+		
+		private System.DateTime _ServerTime;
 		
 		public UserView()
 		{
@@ -180,6 +182,22 @@ namespace FakePyramid
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PayeeName", DbType="VarChar(30)")]
+		public string PayeeName
+		{
+			get
+			{
+				return this._PayeeName;
+			}
+			set
+			{
+				if ((this._PayeeName != value))
+				{
+					this._PayeeName = value;
+				}
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TransactionCount", DbType="Int NOT NULL")]
 		public int TransactionCount
 		{
@@ -196,50 +214,34 @@ namespace FakePyramid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ImageUrl", DbType="VarChar(MAX)")]
-		public string ImageUrl
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ClickCount", DbType="Int NOT NULL")]
+		public int ClickCount
 		{
 			get
 			{
-				return this._ImageUrl;
+				return this._ClickCount;
 			}
 			set
 			{
-				if ((this._ImageUrl != value))
+				if ((this._ClickCount != value))
 				{
-					this._ImageUrl = value;
+					this._ClickCount = value;
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ButtonText", DbType="VarChar(100)")]
-		public string ButtonText
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_LastClickDateTime", DbType="DateTime")]
+		public System.Nullable<System.DateTime> LastClickDateTime
 		{
 			get
 			{
-				return this._ButtonText;
+				return this._LastClickDateTime;
 			}
 			set
 			{
-				if ((this._ButtonText != value))
+				if ((this._LastClickDateTime != value))
 				{
-					this._ButtonText = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PayeeName", DbType="VarChar(30)")]
-		public string PayeeName
-		{
-			get
-			{
-				return this._PayeeName;
-			}
-			set
-			{
-				if ((this._PayeeName != value))
-				{
-					this._PayeeName = value;
+					this._LastClickDateTime = value;
 				}
 			}
 		}
@@ -260,18 +262,34 @@ namespace FakePyramid
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiftAmount", DbType="Int")]
-		public System.Nullable<int> GiftAmount
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Decimal(5,2)")]
+		public System.Nullable<decimal> Price
 		{
 			get
 			{
-				return this._GiftAmount;
+				return this._Price;
 			}
 			set
 			{
-				if ((this._GiftAmount != value))
+				if ((this._Price != value))
 				{
-					this._GiftAmount = value;
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServerTime", DbType="DateTime NOT NULL")]
+		public System.DateTime ServerTime
+		{
+			get
+			{
+				return this._ServerTime;
+			}
+			set
+			{
+				if ((this._ServerTime != value))
+				{
+					this._ServerTime = value;
 				}
 			}
 		}
@@ -286,7 +304,7 @@ namespace FakePyramid
 		{
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Value", DbType="VarChar(MAX) NOT NULL", CanBeNull=false)]
 		public string Value
 		{
 			get

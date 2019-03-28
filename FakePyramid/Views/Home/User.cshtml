@@ -15,70 +15,83 @@
     <script>
         let UserName = "@Model.UserName";
         let PayeeName = "@Model.PayeeName";
+        let BaseValue = @Model.Price;
+        let lastClickCount = @Model.ClickCount;
     </script>
 </head>
 
 <body onload="body_onload();">
     <div class="main-div">
 
-        <a href="https://paypal.me/@Model.UserName" target="_blank">
+        <a href="/Home/ButtonClick/@Model.UserName" target="_blank">
             <div class="button-div">
-                <img src="@Model.ImageUrl" class="button-image " />
-                <div class="button-text">@Model.ButtonText</div>
+                <div id="UserNameDiv" class="button-txt-one">- paypal.me/@Model.UserName - </div>
+                <img id="ButtonImage" src="/img/PPL06.png" class="button-img-one" />
+                <div id="ClickCounter" class="button-txt-one">Click Counter: @Model.ClickCount.ToString("000,000,000") </div>
             </div>
         </a>
 
+        <div id="LastClickedDiv">
+            <p id="LastClickedDateTimeLabel">Last Clicked Time</p>
+            <p id="LastClickedDateTime">-------------------------</p>
+            <img src="/img/refresh.png" class="refreshImage" onclick="RotateImages()" />
+        </div>
+
+
+        <p style="height:10px;">&nbsp;</p>
+
         <p>
-            <b>Check Out My Big Button</b>
-            <ul>
-                <li><b>It's Customizable</b></li>
-                <li>It Opens to <b>MY</b> PayPal.me page.</li>
-                <li><b>And It's a Little Money Maker Too!</b></li>
-            </ul>
+            <b>Click My Big Button!</b> A Big Button is a <b>must-have</b> enhancement to your
+            <b>PayPal.me link.</b>
         </p>
 
-        <p class="with-border">
-            <b>&nbsp; $<span id="base"></span> + $<span id="doubler"></span> = $<span id="total"></span></b>
-        </p>
-        <br />
         <p>
-            <b>Our Amazing Affiliate Program</b>
-            <ul>
-                <li>You need a <b>PayPal.me Link</b> to Participate.</li>
-                <li>
-                    <a href="https://paypal.me/" target="_blank" class="button-anchor"><b>Click Here</b></a>
-                    to set one up for <b>Free</b>.
-                </li>
-                <li>You need a <b>Big Button</b> to Demo.</li>
-                <li>
-                    <a href="https://paypal.me/@Model.NextPayeeName/@Model.GiftAmount" target="_blank" class="button-anchor"><b>Click Here</b></a>
-                    to buy one for only <b>$@Model.GiftAmount</b>.
-                </li>
-                <li>PayPal will email you a receipt.</li>
-                <li>
-                    Find the <b>Transaction ID</b> and paste it below.
-                    <br />
-                    <input id="transid_input" type="text" class="paypal-handle-input2" />
-                    <button onclick="validate();" class="paypal-button">GO</button>
-                </li>
-                <li>Enter your PayPal.me link when prompted.</li>
-                <li>
-                    <a href="/home/customize/@Model.UserName"  
-                       target="_self" 
-                       class="button-anchor"><b>Customize</b></a>
-                    your new <b>Big Button</b>.
-                </li>
-                <li><b>Now Show it off and generate some sales!</b></li>
-                <li>Earn <b>$@Model.GiftAmount</b> for sales <b>2, 4, 6, 8 . . .</b>and so on.</li>
-                <li><b>Those sales</b> may result in <b>new sales</b>.</li>
-                <li><b>Those sales</b> may result in <b>new sales</b>.</li>
-                <li><b>Those sales</b> may result in <b>new sales</b>.</li>
-                <li><b>And so on . . .</b></li>
-                <li>You Earn <b>$@Model.GiftAmount</b> for all of <b>your odd</b> numbered <b>non-personal sales!!!</b></li>
-                <li><b>Anyone with a PayPal.me link and a Big Button can participate, so get yours now.</b></li>
-            </ul>
+            <b>A Big Button</b> is designed to turn your <b>paypal.me</b> account into a <b>Money Magnet!</b>
         </p>
-                     
+
+        <p>
+            A <b>Big Button</b> Features <b>Cool Graphics,</b> a handy <b>Click Counter,</b> and a baked in
+            <b>Referral Plan.</b>
+        </p>
+
+        <p>
+            <b>You will be paid $@Model.Price</b> for every other sale your big button generates. <b>(2, 4, 6, 8, 10,...)</b>
+        </p>
+
+        <p>
+            <b>You will also be paid $@Model.Price </b> for every other sale those sales generate.  <b>(1, 3, 5, 7, 9,...)</b>
+        </p>
+
+        <p>
+            <b>You will also be paid $@Model.Price </b> for every other sale those sales generate.  <b>(1, 3, 5, 7, 9,...)</b>
+        </p>
+
+        <p>
+            <b>You will also be paid $@Model.Price </b> for every other sale those sales generate.  <b>(1, 3, 5, 7, 9,...)</b>
+        </p>
+
+        <p>
+            <b>And so on, and so on, as long as sales are generated!!</b>
+        </p>
+
+        <p style="margin-top:20px; margin-bottom:0px;">
+            <a href="https://paypal.me/" target="_blank" class="button-anchor"><b>Click Here</b></a> to sign up for
+            your <b>FREE PayPal.me link.</b>
+        </p>
+
+        <p style="margin-top:25px; margin-bottom:20px;">
+            <a href="https://paypal.me/@Model.NextPayeeName/@Model.Price" target="_blank" class="button-anchor"><b>Click Here</b></a>
+            to claim your <b>Big Button</b> for only <b>$@Model.Price</b>.
+        </p>
+
+        <p>
+            <b>PayPal</b> will email you a receipt. Find the <b>Transaction ID</b> and paste it here...
+        </p>
+
+        <input id="transid_input" type="text" />
+        <button onclick="validate();" class="paypal-button">GO</button>
+
+
     </div>
 </body>
 </html>

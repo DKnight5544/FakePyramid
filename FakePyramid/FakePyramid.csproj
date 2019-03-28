@@ -92,15 +92,25 @@
   <ItemGroup>
     <Content Include="css\Site.css" />
     <Content Include="Global.asax" />
-    <Content Include="img\10Bill.jpg" />
-    <Content Include="img\bellybutton.png" />
-    <Content Include="img\quilt.jpg" />
-    <Content Include="js\Customize.js" />
+    <Content Include="img\Beach.gif" />
+    <Content Include="img\Cash.gif" />
+    <Content Include="img\ColorBars.gif" />
+    <Content Include="img\CrazyColors.gif" />
+    <Content Include="img\CrazyColors02.gif" />
+    <Content Include="img\CrazyColors03.gif" />
+    <Content Include="img\Fire.gif" />
+    <Content Include="img\Fireworks.gif" />
+    <Content Include="img\Mountain.gif" />
+    <Content Include="img\PPL06.png" />
+    <Content Include="img\refresh.png" />
+    <Content Include="img\VerticalBars.gif" />
     <Content Include="js\Validate.js" />
     <Content Include="js\Index.js" />
     <Content Include="js\Update.js" />
     <Content Include="js\User.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -113,7 +123,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\ButtonCustomizations.cs" />
+    <Compile Include="Models\ClickDataModel.cs" />
     <Compile Include="Models\ValidationMessage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -130,6 +140,13 @@
     <None Include="packages.config" />
     <None Include="Properties\PublishProfiles\bigbutton - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\bigbutton - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\BigButton-FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\bigbutton.com - Web Deploy.pubxml" />
+    <None Include="Properties\PublishProfiles\bigbutton.com - Web Deploy1.pubxml" />
+    <None Include="Properties\PublishProfiles\bigbutton.com - Web Deploy2.pubxml" />
+    <None Include="Properties\PublishProfiles\bigbutton.com - Web Deploy3.pubxml" />
+    <None Include="Properties\PublishProfiles\bigbutton.com - Web Deploy4.pubxml" />
+    <None Include="Properties\PublishProfiles\bigbutton.com - Web Deploy5.pubxml" />
     <None Include="Properties\PublishProfiles\FakePyramid - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\FakePyramid - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\Nesteggpro - FTP.pubxml" />
@@ -140,12 +157,13 @@
     <Content Include="Views\Home\User.cshtml" />
     <Content Include="Views\Home\Validate.cshtml" />
     <Content Include="Views\Home\Update.cshtml" />
-    <Content Include="Views\Home\Customize.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
     <None Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>

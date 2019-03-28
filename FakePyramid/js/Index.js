@@ -21,7 +21,7 @@ function findPage() {
     let ppinput = document.getElementById("ppinput");
     if (ppinput.value === "") { return false; }
 
-    let href = "home/index/" + ppinput.value;
+    let href = "/home/index/" + ppinput.value;
 
     window.location.href = href;
 
