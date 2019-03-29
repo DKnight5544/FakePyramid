@@ -1,5 +1,5 @@
 ﻿
 function ReturnToUserPage() {
-    let href = "/home/index/" + userName;
+    let href = "/" + userName;
     window.location.href = href;
 }

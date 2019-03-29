@@ -123,7 +123,7 @@ namespace FakePyramid.Controllers
                         }
                         else
                         {
-                            Response.Redirect("/home/index/" + userData.UserID);
+                            Response.Redirect("/" + userData.UserID);
                         }
 
                         HttpContext.ApplicationInstance.CompleteRequest();
@@ -172,7 +172,7 @@ namespace FakePyramid.Controllers
                 }
                 else
                 {
-                    Response.Redirect("/Home/Index/" + userData.UserName);
+                    Response.Redirect("/" + userData.UserName);
                 }
 
                 HttpContext.ApplicationInstance.CompleteRequest();
@@ -190,7 +190,6 @@ namespace FakePyramid.Controllers
 
             return View("Validate", msg);
         }
-
 
         public void ButtonClick(string id)
         {
