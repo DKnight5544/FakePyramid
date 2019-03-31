@@ -23,7 +23,7 @@
 <body onload="body_onload();">
     <div class="main-div">
 
-        <a href="/Home/ButtonClick/@Model.UserName" target="_blank">
+        <a href="/Home/ButtonClick/@Model.UserName" target="_blank" class="button-anchor">
             <div class="button-div">
                 <div id="UserNameDiv" class="button-txt-one">- paypal.me/@Model.UserName - </div>
                 <img id="ButtonImage" src="/img/PPL06.png" class="button-img-one" />
@@ -46,46 +46,42 @@
         </p>
 
         <p>
-            <b>A Big Button</b> is designed to turn your <b>paypal.me</b> account into a <b>Money Magnet!</b>
-        </p>
-
-        <p>
             A <b>Big Button</b> Features <b>Cool Graphics,</b> a handy <b>Click Counter,</b> and a baked in
             <b>Referral Plan.</b>
         </p>
 
         <p>
-            <b>You will be paid $@Model.Price</b> for every other sale your big button generates. <b>(2, 4, 6, 8, 10,...)</b>
+            <b>Your Big Button</b> is designed to turn your <b>paypal.me</b> account into a <b>Money Magnet!</b>
         </p>
 
         <p>
-            <b>You will also be paid $@Model.Price </b> for every other sale those sales generate.  <b>(1, 3, 5, 7, 9,...)</b>
+            <b>You are paid $@Model.Price</b> for every other sale your big button generates. <b>(2, 4, 6, 8, 10,...)</b>
         </p>
 
         <p>
-            <b>You will also be paid $@Model.Price </b> for every other sale those sales generate.  <b>(1, 3, 5, 7, 9,...)</b>
+            <b>And $@Model.Price </b> for every other sale those sales generate.  <b>(1, 3, 5, 7, 9,...)</b>
         </p>
 
         <p>
-            <b>You will also be paid $@Model.Price </b> for every other sale those sales generate.  <b>(1, 3, 5, 7, 9,...)</b>
+            <b>And every other sale those sales generate.</b>
         </p>
 
         <p>
-            <b>And so on, and so on, as long as sales are generated!!</b>
+            <b>And every other sale those sales generate.....</b>
         </p>
 
-        <p style="margin-top:20px; margin-bottom:0px;">
-            <a href="https://paypal.me/" target="_blank" class="button-anchor"><b>Click Here</b></a> to sign up for
+        <p>
+            <b><a href="https://paypal.me/" target="_blank">Click Here</a></b> to sign up for
             your <b>FREE PayPal.me link.</b>
         </p>
 
-        <p style="margin-top:25px; margin-bottom:20px;">
-            <a href="https://paypal.me/@Model.NextPayeeName/@Model.Price" target="_blank" class="button-anchor"><b>Click Here</b></a>
+        <p>
+            <b><a href="https://paypal.me/@Model.NextPayeeName/@Model.Price" target="_blank">Click Here</a></b>
             to claim your <b>Big Button</b> for only <b>$@Model.Price</b>.
         </p>
 
         <p>
-            <b>PayPal</b> will email you a receipt. Find the <b>Transaction ID</b> and paste it here...
+            <b>PayPal</b> will email you a receipt. Copy the <b>Transaction ID</b> and paste it here...
         </p>
 
         <input id="transid_input" type="text" />

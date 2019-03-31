@@ -15,6 +15,10 @@ html, body {
     margin-right:auto;
 }
 
+.button-anchor{
+    text-decoration:none;
+}
+
 h3 {
     font-family: 'Titillium Web',serif;
     font-size: 30px;
@@ -28,28 +32,6 @@ h4{
     font-size:18px;
 }
 
-
-.paypal-handle-input {
-    background-color: transparent;
-    color: black;
-    padding-top: 4px;
-    padding-bottom: 6px;
-    padding-left: 5px;
-    border: 1px solid black;
-    width: 100%;
-    margin-top: 5px;
-    font-size: 18px;
-}
-
-
-.preview-div {
-    font-size: 14px;
-    color:red;
-    text-align:right;
-    cursor:pointer;
-    display:block;
-}
-
 .refreshImage {
     position: absolute;
     top: 04px;
@@ -58,22 +40,11 @@ h4{
     z-index: 100;
 }
 
-.input-div{
-}
-
 .paypal-button {
     font-size: 20px;
     margin-top: 20px;
 }
 
-a{
-    text-decoration:none;
-}
-
-.button-anchor{
-    border:solid 1px black;
-    padding:5px;
-}
 
 .button-div {
     width: 100%;
@@ -106,7 +77,12 @@ li {
     width:90%
 }
 
-b { color:Black;
+b {
+    color: black;
+}
+
+a {
+    color: Red;
 }
 
 #transid_input{
